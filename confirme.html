@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Confirmação</title>
+</head>
+<body>
+    <form id="confirmForm">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="confirmacao">Confirmo minha presença:</label><br>
+        <select id="confirmacao" name="confirmacao" required>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+        </select><br><br>
+
+        <label for="mensagem">Mensagem adicional:</label><br>
+        <textarea id="mensagem" name="mensagem"></textarea><br><br>
+
+        <button type="button" onclick="enviarParaWhatsapp()">Confirmar</button>
+    </form>
+
+    <script>
+        function enviarParaWhatsapp() {
+            const nome = document.getElementById('nome').value;
+            const confirmacao = document.getElementById('confirmacao').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            const numeroWhatsapp = '5521990998865'; // Coloque aqui o número do WhatsApp no formato internacional, exemplo: 5511999999999
+            const texto = `Olá, meu nome é ${nome}. Confirmo minha presença: ${confirmacao}. Mensagem adicional: ${mensagem}`;
+
+            const url = `https://api.whatsapp.com/send?phone=${numeroWhatsapp}&text=${encodeURIComponent(texto)}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
